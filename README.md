@@ -6,4 +6,5 @@ Temas a tratar:
 
     - Git.
     - Python.
-    - Odoo.
+    - Instalar Odoo.
+    - Crear un módulo.
