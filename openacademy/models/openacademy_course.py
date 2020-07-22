@@ -10,3 +10,5 @@ class OpenacademyCourse(models.Model):
 
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
+    responsible_id = fields.Many2one(
+        'res.users', ondelete='set null', index=True)
