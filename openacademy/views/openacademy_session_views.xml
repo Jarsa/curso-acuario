@@ -19,6 +19,13 @@
                             <field name="seats"/>
                         </group>
                     </group>
+                    <label for="attendee_ids"/>
+                    <field name="attendee_ids">
+                        <tree>
+                            <field name="name"/>
+                            <field name="country_id"/>
+                        </tree>
+                    </field>
                 </sheet>
             </form>
         </field>

@@ -15,3 +15,4 @@ class OpenacademySession(models.Model):
     instructor_id = fields.Many2one('res.partner')
     course_id = fields.Many2one(
         'openacademy.course', ondelete='cascade', required=True)
+    attendee_ids = fields.Many2many('res.partner', string="Attendees")
