@@ -13,6 +13,7 @@
         'views/openacademy_course_views.xml',
         'security/ir.model.access.csv',
         'views/openacademy_session_views.xml',
+        'views/res_partner_views.xml',
     ],
     'demo': [
         'demo/openacademy_course_demo.xml',
