@@ -7,21 +7,27 @@ from odoo.exceptions import ValidationError
 
 class OpenacademySession(models.Model):
     _name = 'openacademy.session'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "OpenAcademy Sessions"
 
-    name = fields.Char(required=True)
-    start_date = fields.Date(default=fields.Date.today)
-    duration = fields.Float(digits=(6, 2), help="Duration in days")
-    seats = fields.Integer(string="Number of seats")
+    name = fields.Char(required=True, tracking=True)
+    start_date = fields.Date(default=fields.Date.today, tracking=True)
+    duration = fields.Float(
+        digits=(6, 2), help="Duration in days", tracking=True)
+    seats = fields.Integer(string="Number of seats", tracking=True)
     instructor_id = fields.Many2one(
         'res.partner', domain=[
             '|', ('instructor', '=', True),
-            ('category_id.name', 'ilike', "Teacher")])
+            ('category_id.name', 'ilike', "Teacher")], tracking=True)
     course_id = fields.Many2one(
-        'openacademy.course', ondelete='cascade', required=True)
+        'openacademy.course', ondelete='cascade', required=True, tracking=True)
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
     taken_seats = fields.Float(compute='_compute_taken_seats')
-    active = fields.Boolean(default=True)
+    active = fields.Boolean(default=True, tracking=True)
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('confirmed', 'Confirmed'),
+    ], default='draft', tracking=True)
 
     @api.depends('seats', 'attendee_ids')
     def _compute_taken_seats(self):
@@ -54,3 +60,16 @@ class OpenacademySession(models.Model):
             if rec.instructor_id and rec.instructor_id in rec.attendee_ids:
                 raise ValidationError(
                     "A session's instructor can't be an attendee")
+
+    def action_confirm(self):
+        for rec in self:
+            rec.write({
+                'state': 'confirmed',
+            })
+            rec.message_post(body='State changed')
+
+    def action_draft(self):
+        for rec in self:
+            rec.write({
+                'state': 'draft'
+            })

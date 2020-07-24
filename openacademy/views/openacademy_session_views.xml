@@ -6,6 +6,11 @@
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
             <form string="Session Form">
+                <header>
+                    <button name="action_confirm" states="draft" string="Confirm" type="object"/>
+                    <button name="action_draft" states="confirmed" string="Back to Draft" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
                     <group>
                         <group string="General">
@@ -29,6 +34,11 @@
                         </tree>
                     </field>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
