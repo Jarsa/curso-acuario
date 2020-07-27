@@ -9,6 +9,7 @@
                 <page string="Sessions">
                     <group>
                         <field name="instructor"/>
+                        <field name="course_ids" widget="many2many_tags"/>
                         <field name="session_ids"/>
                     </group>
                 </page>

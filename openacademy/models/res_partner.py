@@ -10,3 +10,5 @@ class ResPartner(models.Model):
     instructor = fields.Boolean()
     session_ids = fields.Many2many(
         'openacademy.session', string="Attended Sessions", readonly=True)
+    course_ids = fields.Many2many(
+        'openacademy.course', string="Courses")
