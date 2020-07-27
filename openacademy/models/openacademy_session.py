@@ -32,6 +32,14 @@ class OpenacademySession(models.Model):
     ], default='draft', tracking=True)
     end_date = fields.Date(
         compute='_compute_end_date', inverse='_inverse_end_date', store=True)
+    attendees_count = fields.Integer(
+        compute='_compute_attendees_count', store=True)
+    color = fields.Integer()
+
+    @api.depends('attendee_ids')
+    def _compute_attendees_count(self):
+        for rec in self:
+            rec.attendees_count = len(rec.attendee_ids)
 
     @api.depends('seats', 'attendee_ids')
     def _compute_taken_seats(self):
