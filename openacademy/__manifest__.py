@@ -13,6 +13,7 @@
     ],
     'data': [
         'views/openacademy_course_views.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/openacademy_session_views.xml',
         'views/res_partner_views.xml',

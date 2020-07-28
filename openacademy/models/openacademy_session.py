@@ -91,6 +91,18 @@ class OpenacademySession(models.Model):
             })
             rec.message_post(body='State changed')
 
+    def create_partner(self):
+        for rec in self:
+            partner = self.env['res.partner'].search([
+                ('name', '=', rec.name)], limit=1)
+            if not partner:
+                partner = self.env['res.partner'].create({
+                    'name': rec.name,
+                    'instructor': True,
+                    'website': 'prueba',
+                })
+            rec.instructor_id = partner
+
     def action_draft(self):
         for rec in self:
             rec.write({

@@ -9,6 +9,7 @@
                 <header>
                     <button name="action_confirm" states="draft" string="Confirm" type="object"/>
                     <button name="action_draft" states="confirmed" string="Back to Draft" type="object"/>
+                    <button name="create_partner" string="Create partner" type="object"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
