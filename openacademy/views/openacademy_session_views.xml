@@ -9,7 +9,7 @@
                 <header>
                     <button name="action_confirm" states="draft" string="Confirm" type="object"/>
                     <button name="action_draft" states="confirmed" string="Back to Draft" type="object"/>
-                    <button name="create_partner" string="Create partner" type="object"/>
+                    <button name="create_partner" string="Create partner" type="object" attrs="{'invisible': [('authorized', '=', False)]}"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -24,6 +24,7 @@
                                 'default_function': 'Prueba',
                             }"/>
                             <field name="active"/>
+                            <field name="authorized" invisible="1"/>
                         </group>
                         <group string="Schedule">
                             <field name="start_date"/>

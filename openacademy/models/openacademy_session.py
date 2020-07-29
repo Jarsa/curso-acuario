@@ -35,6 +35,7 @@ class OpenacademySession(models.Model):
     attendees_count = fields.Integer(
         compute='_compute_attendees_count', store=True)
     color = fields.Integer()
+    authorized = fields.Boolean()
 
     @api.depends('attendee_ids')
     def _compute_attendees_count(self):
