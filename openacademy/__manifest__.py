@@ -10,6 +10,7 @@
     'license': 'LGPL-3',
     'depends': [
         'mail',
+        'sale_management',
     ],
     'data': [
         'views/openacademy_course_views.xml',
@@ -22,6 +23,7 @@
         'wizards/openacademy_wizard_view.xml',
         'views/res_users_views.xml',
         'wizards/authorization_wizard_view.xml',
+        'reports/openacademy_session_reports.xml',
     ],
     'demo': [
         'demo/openacademy_course_demo.xml',

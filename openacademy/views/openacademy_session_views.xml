@@ -34,13 +34,19 @@
                             <field name="taken_seats" widget="progressbar"/>
                         </group>
                     </group>
-                    <label for="attendee_ids"/>
-                    <field name="attendee_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
-                        <tree>
-                            <field name="name"/>
-                            <field name="country_id"/>
-                        </tree>
-                    </field>
+                    <notebook>
+                        <page string="Atendees">
+                            <field name="attendee_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="country_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>

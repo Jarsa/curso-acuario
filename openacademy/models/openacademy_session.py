@@ -36,6 +36,7 @@ class OpenacademySession(models.Model):
         compute='_compute_attendees_count', store=True)
     color = fields.Integer()
     authorized = fields.Boolean()
+    description = fields.Html()
 
     @api.depends('attendee_ids')
     def _compute_attendees_count(self):
@@ -130,3 +131,6 @@ class OpenacademySession(models.Model):
             # Compute the difference between dates, but: Friday - Monday = 4 days,
             # so add one day to get 5 days instead
             rec.duration = (rec.end_date - rec.start_date).days + 1
+
+    def test_report(self, numero):
+        return ' Prueba %s ' % numero
