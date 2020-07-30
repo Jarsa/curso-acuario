@@ -3,7 +3,7 @@
 
 from datetime import timedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -55,15 +55,16 @@ class OpenacademySession(models.Model):
         if self.seats < 0:
             return {
                 'warning': {
-                    'title': "Incorrect 'seats' value",
-                    'message': "The number of available seats may not be negative",
+                    'title': _("Incorrect 'seats' value"),
+                    'message': _(
+                        "The number of available seats may not be negative"),
                 },
             }
         if self.seats < len(self.attendee_ids):
             return {
                 'warning': {
-                    'title': "Too many attendees",
-                    'message': "Increase seats or remove excess attendees",
+                    'title': _("Too many attendees"),
+                    'message': _("Increase seats or remove excess attendees"),
                 },
             }
 
@@ -83,7 +84,7 @@ class OpenacademySession(models.Model):
         for rec in self:
             if rec.instructor_id and rec.instructor_id in rec.attendee_ids:
                 raise ValidationError(
-                    "A session's instructor can't be an attendee")
+                    _("A session's instructor can't be an attendee"))
 
     def action_confirm(self):
         for rec in self:
@@ -100,7 +101,7 @@ class OpenacademySession(models.Model):
                 partner = self.env['res.partner'].create({
                     'name': rec.name,
                     'instructor': True,
-                    'website': 'prueba',
+                    'website': _('prueba'),
                 })
             rec.instructor_id = partner
 

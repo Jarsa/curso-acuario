@@ -1,7 +1,7 @@
 # Copyright 2020, Jarsa
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo import fields, models
+from odoo import _, fields, models
 
 
 class OpenacademyCourse(models.Model):
@@ -30,9 +30,9 @@ class OpenacademyCourse(models.Model):
         copied_count = self.search_count(
             [('name', '=like', u"Copy of {}%".format(self.name))])
         if not copied_count:
-            new_name = u"Copy of {}".format(self.name)
+            new_name = _(u"Copy of {}").format(self.name)
         else:
-            new_name = u"Copy of {} ({})".format(self.name, copied_count)
+            new_name = _(u"Copy of {} ({})").format(self.name, copied_count)
 
         default['name'] = new_name
         return super().copy(default)

@@ -19,4 +19,4 @@ class AuthorizationWizard(models.TransientModel):
                 'authorized': True
             })
         else:
-            raise ValidationError("The password is incorrect.")
+            raise ValidationError(_("The password is incorrect."))
