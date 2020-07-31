@@ -11,6 +11,7 @@
     'depends': [
         'mail',
         'sale_management',
+        'board',
     ],
     'data': [
         'views/openacademy_course_views.xml',
@@ -24,6 +25,7 @@
         'views/res_users_views.xml',
         'wizards/authorization_wizard_view.xml',
         'reports/openacademy_session_reports.xml',
+        'views/session_board.xml',
     ],
     'demo': [
         'demo/openacademy_course_demo.xml',
