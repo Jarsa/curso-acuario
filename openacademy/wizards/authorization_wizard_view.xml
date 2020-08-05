@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    
     <record model="ir.ui.view" id="authorization_wizard_form">
         <field name="name">authorization_wizard.form</field>
         <field name="model">authorization.wizard</field>
@@ -9,15 +8,14 @@
                 <group>
                     <field name="password" password="True"/>
                 </group>
+                <footer>
+                    <button name="authorize" type="object"
+                            string="Authorize" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
             </form>
-            <footer>
-                <button name="authorize" type="object"
-                        string="Authorize" class="oe_highlight"/>
-                <button special="cancel" string="Cancel"/>
-            </footer>
         </field>
     </record>
-
     <act_window id="launch_authorization_wizard"
                 name="Authorize"
                 binding_model="openacademy.session"
